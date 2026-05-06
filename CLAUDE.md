@@ -1,9 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Package Overview
-
 **weathergenr** is an R package implementing a gridded, semiparametric, multivariate, multisite stochastic weather generator based on the Steinschneider & Brown (2013) framework. It is used for climate risk assessment, hydrological modeling, and bottom-up climate vulnerability assessments.
 
 ## Build, Test, and Lint Commands
