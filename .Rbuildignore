@@ -50,3 +50,7 @@
 ^codex_safe\.sh$
 
 ^output$
+
+# Claude Code (dev-only)
+^\.claude$
+^CLAUDE\.md$
