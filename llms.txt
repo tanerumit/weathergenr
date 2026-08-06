@@ -1,0 +1,180 @@
+# Getting started
+
+[![R-CMD-check](https://github.com/Deltares-research/weathergenr/actions/workflows/R-CMD-check.yaml/badge.svg?branch=master)](https://github.com/Deltares-research/weathergenr/actions/workflows/R-CMD-check.yaml?query=branch%3Amaster)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/weathergenr.png)](https://CRAN.R-project.org/package=weathergenr)
+[![License:
+MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://deltares-research.github.io/weathergenr/LICENSE)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+# Overview
+
+**weathergenr** is an R package that implements a semiparametric,
+multivariate, multisite stochastic weather generator designed for
+climate risk and stress-testing applications. The approach is
+conceptually based on the framework of Steinschneider & Brown (2013) and
+is adapted here for gridded datasets and netcdf-based workflows.
+
+The package is intended for workflows such as:
+
+- climate risk and stress testing
+- hydrological and water-resources modelling
+- scenario analysis for climate adaptation studies
+
+## Methodological framework
+
+The generator represents climate variability across multiple time scales
+by coupling low-frequency climate dynamics with realistic daily weather
+sequences. It consists of three components:
+
+**1. Low-frequency climate variability (WARM)** Interannual to decadal
+variability is modeled with wavelet autoregressive methods applied to
+annual climate aggregates. This preserves persistence and spectral
+structure and defines annual climate states that condition daily
+weather.
+
+**2. Daily weather generation (Markov chain + KNN)** Wet-dry persistence
+is simulated with a multi-state Markov chain, while daily precipitation
+and temperature values are generated via K-nearest-neighbour resampling.
+This maintains seasonality, cross-variable dependence, and spatial
+coherence.
+
+**3. Climate perturbation and stress testing** Quantile-based
+perturbations impose controlled changes in means, variability, and
+extremes, enabling systematic climate stress testing while preserving
+internal consistency.
+
+## Intended use
+
+The resulting framework is intended for *bottom-up climate vulnerability
+assessments* to explore system response under a wide range of plausible
+climate conditions.
+
+## Key features
+
+- netcdf i/o for convenient coupling with other models
+- efficient generation, filtering, and evaluation of large stochastic
+  ensembles
+- integrated diagnostics and visualization for validation and analysis
+
+# Installation
+
+Install the latest version from GitHub:
+
+``` r
+
+# install.packages("devtools")
+# devtools::install_github("Deltares-research/weathergenr")
+```
+
+# Getting started
+
+A quick tutorial is available here:  
+<https://deltares-research.github.io/weathergenr/articles/getting_started.html>
+
+# References
+
+> Steinschneider, S., & Brown, C. (2013). *A semiparametric
+> multivariate, multisite weather generator with low-frequency
+> variability for use in climate risk assessments.* **Water Resources
+> Research**, 49(11), 7205-7220. (<https://doi.org/10.1002/wrcr.20528>)
+
+# License
+
+Licensed under the MIT License. See `LICENSE` for details.
+
+# Package index
+
+## All functions
+
+- [`adjust_precipitation_qm()`](https://deltares-research.github.io/weathergenr/reference/adjust_precipitation_qm.md)
+  : Adjust Daily Precipitation with Gamma Quantile Mapping Under Monthly
+  Scenario Factors
+- [`analyze_wavelet_additive()`](https://deltares-research.github.io/weathergenr/reference/analyze_wavelet_additive.md)
+  : Additive wavelet analysis with CWT diagnostics
+- [`analyze_wavelet_spectrum()`](https://deltares-research.github.io/weathergenr/reference/analyze_wavelet_spectrum.md)
+  : Continuous Wavelet Spectral Analysis with COI-Aware Significance
+- [`apply_climate_perturbations()`](https://deltares-research.github.io/weathergenr/reference/apply_climate_perturbations.md)
+  : Apply Monthly Climate Perturbations to Gridded Daily Weather Series
+- [`build_historical_dates()`](https://deltares-research.github.io/weathergenr/reference/build_historical_dates.md)
+  : Build Historical Date Table
+- [`calculate_monthly_pet()`](https://deltares-research.github.io/weathergenr/reference/calculate_monthly_pet.md)
+  : Calculate Monthly Potential Evapotranspiration (PET)
+- [`compute_area_averages()`](https://deltares-research.github.io/weathergenr/reference/compute_area_averages.md)
+  : Compute Area-Averaged Daily and Annual Climate Series
+- [`compute_water_year()`](https://deltares-research.github.io/weathergenr/reference/compute_water_year.md)
+  : Calculate water year from a date vector
+- [`create_all_diagnostic_plots()`](https://deltares-research.github.io/weathergenr/reference/create_all_diagnostic_plots.md)
+  : Create all diagnostic plots
+- [`diagnose_precip_qm()`](https://deltares-research.github.io/weathergenr/reference/diagnose_precip_qm.md)
+  : Compute Diagnostics for Precipitation Quantile Mapping
+- [`estimate_monthly_markov_probs()`](https://deltares-research.github.io/weathergenr/reference/estimate_monthly_markov_probs.md)
+  : Estimate Monthly Occurrence-State Markov Transition Probabilities
+- [`evaluate_weather_generator()`](https://deltares-research.github.io/weathergenr/reference/evaluate_weather_generator.md)
+  : Evaluate Stochastic Weather Generator Performance
+- [`filter_warm_pool()`](https://deltares-research.github.io/weathergenr/reference/filter_warm_pool.md)
+  : Filter and sample WARM realizations using distributional, tail, and
+  spectral criteria
+- [`find_leap_day_indices()`](https://deltares-research.github.io/weathergenr/reference/find_leap_day_indices.md)
+  : Find leap-day (Feb 29) indices in a date vector
+- [`generate_noleap_dates()`](https://deltares-research.github.io/weathergenr/reference/generate_noleap_dates.md)
+  : Generate a no-leap (365-day) daily date sequence
+- [`generate_symmetric_dummy_points()`](https://deltares-research.github.io/weathergenr/reference/generate_symmetric_dummy_points.md)
+  : Generate Dummy Points to Enforce Symmetric Facet Axes
+- [`generate_weather()`](https://deltares-research.github.io/weathergenr/reference/generate_weather.md)
+  : Generate Synthetic Gridded Daily Weather Series
+- [`get_result_index()`](https://deltares-research.github.io/weathergenr/reference/get_result_index.md)
+  : Safely Get or Sample an Index from a Vector
+- [`knn_sample()`](https://deltares-research.github.io/weathergenr/reference/knn_sample.md)
+  : K-Nearest Neighbor (KNN) Sampling from Candidates
+- [`markov_next_state()`](https://deltares-research.github.io/weathergenr/reference/markov_next_state.md)
+  : Determine Next State in a First-Order Markov Chain
+- [`match_transition_positions()`](https://deltares-research.github.io/weathergenr/reference/match_transition_positions.md)
+  : Get Positions of a Specific Occurrence State Transition Within
+  Candidate Indices
+- [`modwt_mra()`](https://deltares-research.github.io/weathergenr/reference/modwt_mra.md)
+  : MODWT multiresolution analysis (MRA)
+- [`normalize_calendar()`](https://deltares-research.github.io/weathergenr/reference/normalize_calendar.md)
+  : Normalize Calendar to 365 Days
+- [`plot_wavelet_global_spectrum()`](https://deltares-research.github.io/weathergenr/reference/plot_wavelet_global_spectrum.md)
+  : Plot Global Wavelet Spectrum
+- [`plot_wavelet_power()`](https://deltares-research.github.io/weathergenr/reference/plot_wavelet_power.md)
+  : Plot Wavelet Power and Global Wavelet Spectrum
+- [`prepare_evaluation_data()`](https://deltares-research.github.io/weathergenr/reference/prepare_evaluation_data.md)
+  : Prepare Generator Output for Evaluation
+- [`print(`*`<precip_qm_diagnostics>`*`)`](https://deltares-research.github.io/weathergenr/reference/print.precip_qm_diagnostics.md)
+  : Print method for precipitation QM diagnostics
+- [`print(`*`<wavelet_additive>`*`)`](https://deltares-research.github.io/weathergenr/reference/print.wavelet_additive.md)
+  : Print method for additive wavelet analysis
+- [`read_netcdf()`](https://deltares-research.github.io/weathergenr/reference/read_netcdf.md)
+  : Read NetCDF variables into tidy data frames
+- [`resample_weather_dates()`](https://deltares-research.github.io/weathergenr/reference/resample_weather_dates.md)
+  : Resample Daily Weather Dates Using Annual KNN and Markov Chain Logic
+- [`run_weather_generator()`](https://deltares-research.github.io/weathergenr/reference/run_weather_generator.md)
+  : Run weathergenr end-to-end (generate and evaluate)
+- [`simulate_warm()`](https://deltares-research.github.io/weathergenr/reference/simulate_warm.md)
+  : Simulate synthetic series with Wavelet Autoregressive Modeling
+  (WARM)
+- [`summary(`*`<precip_qm_diagnostics>`*`)`](https://deltares-research.github.io/weathergenr/reference/summary.precip_qm_diagnostics.md)
+  : Summarize precipitation QM diagnostics
+- [`validate_quantile_mapping()`](https://deltares-research.github.io/weathergenr/reference/validate_quantile_mapping.md)
+  : Validate precipitation quantile mapping adjustments
+- [`write_netcdf()`](https://deltares-research.github.io/weathergenr/reference/write_netcdf.md)
+  : Write Gridded Data to a NetCDF File (Template-Based)
+
+# Articles
+
+### Articles
+
+- [Getting Started with
+  weathergenr](https://deltares-research.github.io/weathergenr/articles/getting_started.md):
+
+  Read NetCDF inputs, generate stochastic realizations, and evaluate
+  generator skill.
+
+- [Climate
+  Perturbations](https://deltares-research.github.io/weathergenr/articles/climate_perturbation.md):
+
+  Applying monthly perturbations to stochastic weather, and validate
+  precipitation changes.
