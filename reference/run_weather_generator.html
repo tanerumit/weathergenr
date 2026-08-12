@@ -19,7 +19,7 @@ while continuing to display output on the console."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">weathergenr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,11 @@ while continuing to display output on the console.</p>
 
 
 <dt id="arg-config">config<a class="anchor" aria-label="anchor" href="#arg-config"></a></dt>
-<dd><p>List. Full simulation/evaluation configuration.</p></dd>
+<dd><p>List. Full simulation/evaluation configuration. Entries are
+forwarded to [generate_weather()] and [evaluate_weather_generator()] under
+the same names, including `warm_filter_bounds`, `relax_priority`,
+`plot_dpi` and `plot_device`. An entry that is absent (`NULL`) falls back to
+the receiving function's default.</p></dd>
 
 
 <dt id="arg-eval-max-grids">eval_max_grids<a class="anchor" aria-label="anchor" href="#arg-eval-max-grids"></a></dt>

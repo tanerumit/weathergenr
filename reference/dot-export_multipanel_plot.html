@@ -9,7 +9,7 @@ facet layout to infer width/height. Returns the plot invisibly."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">weathergenr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,8 @@ facet layout to infer width/height. Returns the plot invisibly.</p>
 <span>  <span class="va">save_plots</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  <span class="va">output_dir</span></span>
+<span>  <span class="va">output_dir</span>,</span>
+<span>  plot_config <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +84,14 @@ facet layout to infer width/height. Returns the plot invisibly.</p>
 
 <dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
 <dd><p>Character; output directory for saved plots.</p></dd>
+
+
+<dt id="arg-plot-config">plot_config<a class="anchor" aria-label="anchor" href="#arg-plot-config"></a></dt>
+<dd><p>List; optional plotting configuration. <code>dpi</code> and
+<code>device</code> are read from it when present, so callers can trade raster
+resolution for speed or swap in a faster device. Rendering and writing the
+diagnostic PNGs is roughly a quarter of an evaluation run at the default
+300 dpi.</p></dd>
 
 </dl></div>
     <div class="section level2">

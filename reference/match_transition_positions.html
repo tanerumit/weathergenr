@@ -9,7 +9,7 @@ based on wet/dry/extreme day thresholds."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">weathergenr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,8 @@ in the time series.</p></dd>
 
 
 <dt id="arg-wet-threshold">wet_threshold<a class="anchor" aria-label="anchor" href="#arg-wet-threshold"></a></dt>
-<dd><p>Numeric. Threshold separating dry and wet days.</p></dd>
+<dd><p>Numeric. Threshold separating dry and wet days. Must not
+exceed <code>extreme_threshold</code>; an inverted pair is an error.</p></dd>
 
 
 <dt id="arg-extreme-threshold">extreme_threshold<a class="anchor" aria-label="anchor" href="#arg-extreme-threshold"></a></dt>

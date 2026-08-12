@@ -82,7 +82,8 @@ estimate_monthly_markov_probs(
 - wet_threshold:
 
   Numeric vector of length 12. Monthly precipitation thresholds
-  separating dry and wet states, aligned to month_order.
+  separating dry and wet states, aligned to month_order. Must not exceed
+  `extreme_threshold` elementwise; an inverted pair is an error.
 
 - extreme_threshold:
 

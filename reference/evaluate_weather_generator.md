@@ -25,7 +25,9 @@ evaluate_weather_generator(
   parallel = FALSE,
   n_cores = NULL,
   eval_max_grids = 25,
-  seed = NULL
+  seed = NULL,
+  plot_dpi = 300,
+  plot_device = NULL
 )
 ```
 
@@ -111,6 +113,22 @@ evaluate_weather_generator(
   Optional integer. Random seed for reproducible grid subsampling and
   year window selection. If NULL, results will vary between runs.
 
+- plot_dpi:
+
+  Numeric. Raster resolution for saved diagnostic plots (default = 300).
+  Rendering and writing the PNGs is roughly a quarter of an evaluation
+  run, and that cost scales with \`dpi\`, so lowering this is the
+  simplest way to speed up iterative work. Ignored when \`save_plots =
+  FALSE\`.
+
+- plot_device:
+
+  Optional graphics device passed to \[ggplot2::ggsave()\] (default
+  \`NULL\`, letting \`ggsave()\` infer it from the file extension).
+  Supplying a faster device, for example \`ragg::agg_png\`, typically
+  halves the remaining render cost. \`ragg\` is not a dependency of this
+  package; pass the function only if you have it installed.
+
 ## Value
 
 A named list of \`ggplot2\` plot objects with class
@@ -161,13 +179,13 @@ out <- evaluate_weather_generator(
   save_plots = FALSE,
   show_title = FALSE
 )
-#> [2026-08-06 15:58:04] [EVAL] Evaluation Started: Variables = precip,temp
-#> [2026-08-06 15:58:04] [EVAL] Parameters: wet.q = 0.2 | extreme.q = 0.8
-#> [2026-08-06 15:58:04] [EVAL] Standardizing obs/sim periods to full years and equal length
-#> [2026-08-06 15:58:04] [EVAL] Standardized period | Obs = 2001-2001 | Sim = 2001-2001
-#> [2026-08-06 15:58:04] [EVAL] Processing observed data
-#> [2026-08-06 15:58:04] [EVAL] Processing simulated data (1 realizations)
-#> [2026-08-06 15:58:04] [EVAL] Generating diagnostic plots
+#> [2026-08-12 20:48:36] [EVAL] Evaluation Started: Variables = precip,temp
+#> [2026-08-12 20:48:36] [EVAL] Parameters: wet.q = 0.2 | extreme.q = 0.8
+#> [2026-08-12 20:48:36] [EVAL] Standardizing obs/sim periods to full years and equal length
+#> [2026-08-12 20:48:36] [EVAL] Standardized period | Obs = 2001-2001 | Sim = 2001-2001
+#> [2026-08-12 20:48:36] [EVAL] Processing observed data
+#> [2026-08-12 20:48:36] [EVAL] Processing simulated data (1 realizations)
+#> [2026-08-12 20:48:36] [EVAL] Generating diagnostic plots
 #> Warning: There were 2 warnings in `dplyr::summarise()`.
 #> The first warning was:
 #> ℹ In argument: `.min = min(c(.data[["Observed"]], .data[["Simulated"]]), na.rm
@@ -175,14 +193,14 @@ out <- evaluate_weather_generator(
 #> Caused by warning in `min()`:
 #> ! no non-missing arguments to min; returning Inf
 #> ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.
-#> [2026-08-06 15:58:04] [EVAL] Computing fit metrics for all realizations
+#> [2026-08-12 20:48:36] [EVAL] Computing fit metrics for all realizations
 #> Warning: There were 2 warnings in `dplyr::mutate()`.
 #> The first warning was:
 #> ℹ In argument: `dplyr::across(...)`.
 #> Caused by warning in `min()`:
 #> ! no non-missing arguments to min; returning Inf
 #> ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.
-#> [2026-08-06 15:58:04] [EVAL] Displaying fit assessment summary
+#> [2026-08-12 20:48:36] [EVAL] Displaying fit assessment summary
 #> 
 #> =============================================================================================== 
 #>  FIT ASSESSMENT SUMMARY - ALL REALIZATIONS
@@ -201,7 +219,7 @@ out <- evaluate_weather_generator(
 #> 
 #>    Rlz   Rank   Mean.precip   SD.precip   Days.Wet   Spell.Wet   Cor.Cross   Cor.Inter    Score 
 #> ----------------------------------------------------------------------------------------------- 
-#>      1      1        1.6773      1.1552    11.5091     10.2257          NA      0.0479   0.0000 
+#>      1      1        0.6260      0.5144     2.8333      2.5618          NA      0.0479   0.0000 
 #> =============================================================================================== 
 #> 
 #>  Summary:
@@ -209,7 +227,7 @@ out <- evaluate_weather_generator(
 #>   - Worst realization : 1 (score = 0.0000)
 #>   - Median score      : 0.0000
 #> 
-#> [2026-08-06 15:58:04] [EVAL] Assessment completed successfully
+#> [2026-08-12 20:48:36] [EVAL] Assessment completed successfully
 class(out)
 #> [1] "weather_assessment" "list"              
 ```
